@@ -3,7 +3,7 @@ const { BaseError } = require('../middlewares/appError');
 const validationName = (name) => {
   const nameRegExp = new RegExp(/^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/);
   if (!nameRegExp.test(name)) {
-    throw new BaseError('이름 형식이 맞지 않습니다.');
+    throw new BaseError('이름 형식이 맞지 않습니다.', 400);
   }
 };
 

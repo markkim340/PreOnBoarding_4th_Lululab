@@ -1,7 +1,7 @@
 -- migrate:up
 CREATE TABLE `bookings` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `booking_number` int(10) UNIQUE KEY NOT NULL,
+  `booking_number` varchar(20) UNIQUE KEY NOT NULL,
   `user_id` int NOT NULL,
   `schedule_id` int NOT NULL,
   `booking_type_id` int NOT NULL,
