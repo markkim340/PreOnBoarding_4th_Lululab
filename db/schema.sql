@@ -81,6 +81,22 @@ CREATE TABLE `schedules` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Temporary view structure for view `schedules_view`
+--
+
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `schedules_view` AS SELECT
+ 1 AS `id`,
+ 1 AS `clinic_id`,
+ 1 AS `name`,
+ 1 AS `adress`,
+ 1 AS `contact`,
+ 1 AS `date`,
+ 1 AS `time`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `schema_migrations`
 --
 
@@ -115,6 +131,24 @@ CREATE TABLE `users` (
 --
 -- Dumping routines for database 'lululab'
 --
+
+--
+-- Final view structure for view `schedules_view`
+--
+
+/*!50001 DROP VIEW IF EXISTS `schedules_view`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `schedules_view` AS select `schedules`.`id` AS `id`,`clinics`.`id` AS `clinic_id`,`clinics`.`name` AS `name`,`clinics`.`adress` AS `adress`,`clinics`.`contact` AS `contact`,`schedules`.`date` AS `date`,date_format(`schedules`.`time`,'%H:%i') AS `time` from (`schedules` left join `clinics` on((`clinics`.`id` = `schedules`.`clinic_id`))) order by `schedules`.`date`,date_format(`schedules`.`time`,'%H:%i'),`clinics`.`name` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -141,5 +175,6 @@ INSERT INTO `schema_migrations` (version) VALUES
   ('20221018055626'),
   ('20221018055846'),
   ('20221018055957'),
-  ('20221018062043');
+  ('20221018062043'),
+  ('20221018083623');
 UNLOCK TABLES;
